@@ -10,7 +10,7 @@
 <link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.554">
 
-  <title>How to slash your dbt data pipeline costs with DuckDB</title>
+  <title>How to reduce your dbt data pipeline costs with DuckDB</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -332,7 +332,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">How to slash your dbt data pipeline costs with DuckDB</h1>
+  <h1 class="title">How to reduce your dbt data pipeline costs with DuckDB</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -342,7 +342,7 @@
 <h2 id="toc-title">Table of contents</h2>
 <ul>
 <li><a href="#/duckdb-ephemeral-vms-dirt-cheap-data-processing." id="/toc-duckdb-ephemeral-vms-dirt-cheap-data-processing.">DuckDB + Ephemeral VMs = dirt cheap data processing.</a></li>
-<li><a href="#/migrate-one-or-a-few-pipelines-at-a-time." id="/toc-migrate-one-or-a-few-pipelines-at-a-time.">Migrate one (or a few pipelines) at a time.</a></li>
+<li><a href="#/migrate-one-or-a-few-related-pipelines-at-a-time." id="/toc-migrate-one-or-a-few-related-pipelines-at-a-time.">Migrate one (or a few related pipelines) at a time.</a></li>
 <li><a href="#/watch-out-for-integration-points" id="/toc-watch-out-for-integration-points">Watch out for integration points!</a></li>
 </ul>
 </nav>
@@ -354,7 +354,7 @@
 <ul>
 <li>Name: Joseph Machado</li>
 <li>Work exp: 10 years in Data engineering &amp; platform</li>
-<li>Blog: <a href="https://www.startdataengineering.com/">Startdataengineering</a></li>
+<li>Blog: <a href="https://www.startdataengineering.com/">startdataengineering.com</a></li>
 </ul>
 </div><div class="column" style="width:30%;">
 <p><img data-src="./profile.jpeg"></p>
@@ -366,8 +366,8 @@
 <h1>DuckDB + Ephemeral VMs = dirt cheap data processing.</h1>
 
 </section>
-<section id="serverless-workflows" class="slide level2">
-<h2>Serverless workflows</h2>
+<section id="serverless-data-pipeline-workflows" class="slide level2">
+<h2>Serverless data pipeline workflows</h2>
 <ul>
 <li>Serverless dbt + duckdb workflow: Start VM -&gt; Pull data into VM -&gt; Process data -&gt; Dump data into destination -&gt; Spin down VM.</li>
 </ul>
@@ -393,7 +393,7 @@
 <ul>
 <li><p>Most cloud providers allow you to rent virtual machines charged by the hour (e.g., EC2).</p></li>
 <li><p>If you are not under tight time constraints, you can bid spot VMS at a much lower rate than on-demand VMS.</p></li>
-<li><p>Pulling data into EC2 is cheap.</p></li>
+<li><p>Pulling data into VM (e.g.&nbsp;EC2) is cheap.</p></li>
 <li><p>Fast data transfer speed (especially with cpp optimized duckdb extensions).</p></li>
 </ul>
 </section>
@@ -416,13 +416,13 @@
 <section id="cost-projection-with-serverless-duckdb-dbt" class="slide level2 scrollable">
 <h2>Cost projection with serverless duckdb + dbt</h2>
 <ul>
-<li><p>Execution time (sample): A non-optimized, expensive pipeline (fact-fact join, joining all dimensions) takes about 2 minutes to run.</p>
+<li><p><strong>Execution time (sample)</strong>: A non-optimized, expensive pipeline (fact-fact join, joining all dimensions) takes about 2 minutes to run.</p>
 <ol type="1">
 <li>Input: ~2GB</li>
-<li>RAM: 8GB Cores: 2</li>
+<li>Github codespace machine: RAM: 8GB &amp; Cores: 2</li>
 <li>Output: ~13GB</li>
 </ol></li>
-<li><p>Computing the cost for 800 jobs, assuming one file (500MB) on avg per job ~ 700 USD.</p></li>
+<li><p>Serverless for 800 jobs ~ 700 USD.</p></li>
 <li><p>Data transfer costs &amp; IP costs are negligible at this scale.</p></li>
 </ul>
 </section>
@@ -434,8 +434,8 @@
 </ul>
 </section></section>
 <section>
-<section id="migrate-one-or-a-few-pipelines-at-a-time." class="title-slide slide level1 center">
-<h1>Migrate one (or a few pipelines) at a time.</h1>
+<section id="migrate-one-or-a-few-related-pipelines-at-a-time." class="title-slide slide level1 center">
+<h1>Migrate one (or a few related pipelines) at a time.</h1>
 
 </section>
 <section id="your-first-migration-will-involve-some-work" class="slide level2">
@@ -480,8 +480,7 @@
 <section id="section-3" class="slide level2">
 <h2></h2>
 <ul>
-<li><p>Use <strong><code>specialized data structures</code></strong> such as date lists to optimize large aggregation operations.</p></li>
-<li><p><strong><code>Store aggregated data</code></strong> in a separate location. For example, if you count rows in a dataset every run, store the counts in a separate table so you don’t have to recompute them for historical data each time.</p></li>
+<li><strong><code>Store aggregated data</code></strong> in a separate location. For example, if you count rows in a dataset every run, store the counts in a separate table so you don’t have to recompute them for historical data each time.</li>
 </ul>
 </section></section>
 <section>
@@ -512,9 +511,6 @@
 <li><p>You will need a system to create the output tables/dump to the cloud store via extensions or code.</p></li>
 </ul>
 </section>
-<section id="questions" class="slide level2">
-<h2>Questions</h2>
-</section>
 <section id="excited-about" class="slide level2 scrollable">
 <h2>Excited About</h2>
 <ol type="1">
@@ -524,6 +520,9 @@
 <li><a href="https://github.com/josephmachado/simple_dbt_project/blob/1ba209ba6e417b689bd33b946d7925e548387069/profiles.yml#L5-L12">dbt duckdb</a></li>
 <li><a href="https://github.com/jwills/buenavista">Buena vista library for accessing duckdb tables when dbt is running</a></li>
 </ol>
+</section>
+<section id="questions" class="slide level2">
+<h2>Questions</h2>
 <div class="quarto-auto-generated-content">
 <p><img src="./sde_logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
