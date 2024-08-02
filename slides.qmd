@@ -155,7 +155,7 @@ flowchart LR
 
 * You can use dbt's `profile.yml` and dbt cli to indicate which pipeline should run where.
 
-* Note that this introduces significant complexities with debugging!
+* Note that this introduces significant complexities with debugging & maintanance & establishing SOT!
 
 * But you can alleviate a lot of issues if you are using a catalog (e.g. iceberg catalog)that most OLAP dbs support.
 
