@@ -366,6 +366,17 @@
 <h1>DuckDB + Ephemeral VMs = dirt cheap data processing.</h1>
 
 </section>
+<section id="standard-dbt-warehouse-workflow" class="slide level2">
+<h2>Standard dbt + warehouse workflow</h2>
+
+<img data-src="./dbt.png" class="r-stretch"></section>
+<section id="section" class="slide level2">
+<h2></h2>
+<ul>
+<li>The connection settings are defined in the <code>profiles.yml</code> file.</li>
+</ul>
+
+<img data-src="./profile.png" class="r-stretch"></section>
 <section id="serverless-data-pipeline-workflows" class="slide level2">
 <h2>Serverless data pipeline workflows</h2>
 <ul>
@@ -387,6 +398,9 @@
 </div>
 </div>
 </div>
+<ul>
+<li><strong>Note</strong>: Pulling data can be done effectively with DuckDB extensions</li>
+</ul>
 </section>
 <section id="ephemeral-servers-are-inexpensive" class="slide level2">
 <h2>Ephemeral servers are inexpensive</h2>
@@ -409,7 +423,7 @@
 <li>Objective: Reducing overall costs to between $3,000 and $5,000 per month, processing about 400GB per day across 800 jobs.</li>
 </ul>
 </section>
-<section id="section" class="slide level2">
+<section id="section-1" class="slide level2">
 <h2></h2>
 
 <img data-src="./de_arch.png" class="r-stretch quarto-figure-center"><p class="caption">Architecture</p></section>
@@ -422,7 +436,7 @@
 <li>Github codespace machine: RAM: 8GB &amp; Cores: 2</li>
 <li>Output: ~13GB</li>
 </ol></li>
-<li><p>Serverless for 800 jobs ~ 700 USD.</p></li>
+<li><p>Serverless for 800 jobs ~ <strong>700 USD</strong>.</p></li>
 <li><p>Data transfer costs &amp; IP costs are negligible at this scale.</p></li>
 </ul>
 </section>
@@ -446,7 +460,7 @@
 <li><p><strong>Error handling</strong>: If you are processing in memory (without persisting intermediate datasets) and your data processing fails, you will have to re-run the entire pipeline.</p></li>
 </ul>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <ul>
 <li><p><strong>Permissions</strong> are set at the service level, not the USER/ROLE level, as in most data processing systems.</p></li>
@@ -460,7 +474,7 @@
 <li><p>Migrate at off-peak times. For example, if you are in e-commerce, don’t migrate during Thanksgiving, or if you are in finance, don’t migrate at the end of fiscal year reporting.</p></li>
 </ul>
 </section>
-<section id="section-2" class="slide level2 scrollable">
+<section id="section-3" class="slide level2 scrollable">
 <h2></h2>
 <ul>
 <li>Data pipeline migrations are tricky!
@@ -477,12 +491,25 @@
 <li><p><strong><code>Aggregate past n periods of data</code></strong> instead of reaggregating the entire data set. For example, if your pipeline processes sales data that comes in every day, instead of reprocessing the past n years’ worth of data, consider reprocessing the past 3/6 months of data (depending on later arriving data for your business use case).</p></li>
 </ul>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <ul>
 <li><strong><code>Store aggregated data</code></strong> in a separate location. For example, if you count rows in a dataset every run, store the counts in a separate table so you don’t have to recompute them for historical data each time.</li>
 </ul>
-</section></section>
+</section>
+<section id="multi-environment-setup" class="slide level2">
+<h2>Multi environment setup</h2>
+<ul>
+<li><p>There may be cases where you may want to run some pipelines with duckdb and the rest with your existing warehouse.</p></li>
+<li><p>You can use dbt’s <code>profile.yml</code> and dbt cli to indicate which pipeline should run where.</p></li>
+<li><p>Note that this introduces significant complexities with debugging!</p></li>
+<li><p>But you can alleviate a lot of issues if you are using a catalog (e.g.&nbsp;iceberg catalog)that most OLAP dbs support.</p></li>
+</ul>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+
+<img data-src="./multienv.png" class="r-stretch"></section></section>
 <section>
 <section id="watch-out-for-integration-points" class="title-slide slide level1 center">
 <h1>Watch out for integration points!</h1>

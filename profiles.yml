@@ -1,0 +1,18 @@
+---
+config:
+  send_anonymous_usage_stats: false
+sde_dbt_tutorial:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ./dbt.duckdb
+    dev-cloud-warehouse:
+      type: postgres
+      threads: 20
+      host: ecs.xxxx.com 
+      port: 5432
+      user: dbt
+      pass: password1234
+      dbname: dbt
+      schema: warehouse

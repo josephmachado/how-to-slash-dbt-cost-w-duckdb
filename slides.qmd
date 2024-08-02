@@ -42,6 +42,16 @@ format:
 
 # DuckDB + Ephemeral VMs = dirt cheap data processing.
 
+## Standard dbt + warehouse workflow
+
+![](./dbt.png)
+
+##
+
+* The connection settings are defined in the `profiles.yml` file.
+
+![](./profile.png)
+
 ## Serverless data pipeline workflows
 
 * Serverless dbt + duckdb workflow: 
@@ -58,6 +68,7 @@ flowchart LR
     C --> D(Dump data into destination)
     D --> E(Spin down VM)
 ```
+* **Note**: Pulling data can be done effectively with DuckDB extensions
 
 
 ## Ephemeral servers are inexpensive
@@ -90,7 +101,7 @@ flowchart LR
     2. Github codespace machine: RAM: 8GB & Cores: 2
     3. Output: ~13GB
 
-* Serverless for 800 jobs ~ 700 USD.
+* Serverless for 800 jobs ~ **700 USD**.
 
 * Data transfer costs & IP costs are negligible at this scale.
 
@@ -137,6 +148,20 @@ flowchart LR
 ## 
 
 * **`Store aggregated data`** in a separate location. For example, if you count rows in a dataset every run, store the counts in a separate table so you don't have to recompute them for historical data each time.
+
+## Multi environment setup
+
+* There may be cases where you may want to run some pipelines with duckdb and the rest with your existing warehouse.
+
+* You can use dbt's `profile.yml` and dbt cli to indicate which pipeline should run where.
+
+* Note that this introduces significant complexities with debugging!
+
+* But you can alleviate a lot of issues if you are using a catalog (e.g. iceberg catalog)that most OLAP dbs support.
+
+## 
+
+![](./multienv.png)
 
 # Watch out for integration points!
 

@@ -1,0 +1,39 @@
+
+
+============================== 15:46:26.503232 | b4b9fb3f-162b-4bb0-b019-19818801fd1a ==============================
+[0m15:46:26.503232 [info ] [MainThread]: Running with dbt=1.8.4
+[0m15:46:26.503881 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/josephkevinmachado/code/how-to-slash-dbt-cost-w-duckdb', 'debug': 'False', 'warn_error': 'None', 'log_path': 'logs', 'fail_fast': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run --target dev', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'False'}
+[0m15:46:26.504388 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/josephkevinmachado/code/how-to-slash-dbt-cost-w-duckdb/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m15:46:26.505216 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.061306104, "process_user_time": 1.490937, "process_kernel_time": 0.071948, "process_mem_max_rss": "87956", "process_out_blocks": "8", "command_success": false, "process_in_blocks": "0"}
+[0m15:46:26.505987 [debug] [MainThread]: Command `dbt run` failed at 15:46:26.505868 after 0.06 seconds
+[0m15:46:26.506357 [debug] [MainThread]: Flushing usage events
+
+
+============================== 15:46:38.971914 | d413bfbc-4979-4d2e-a3d3-6364b96a7f18 ==============================
+[0m15:46:38.971914 [info ] [MainThread]: Running with dbt=1.8.4
+[0m15:46:38.972695 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': 'logs', 'version_check': 'True', 'profiles_dir': '/home/josephkevinmachado/code/how-to-slash-dbt-cost-w-duckdb', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'log_format': 'default', 'invocation_command': 'dbt run --target dev-cloud-warehouse', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'False'}
+[0m15:46:38.973212 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/josephkevinmachado/code/how-to-slash-dbt-cost-w-duckdb/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m15:46:38.974022 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.058862682, "process_user_time": 1.499894, "process_kernel_time": 0.087935, "process_mem_max_rss": "87904", "process_out_blocks": "8", "command_success": false, "process_in_blocks": "0"}
+[0m15:46:38.974581 [debug] [MainThread]: Command `dbt run` failed at 15:46:38.974470 after 0.06 seconds
+[0m15:46:38.974951 [debug] [MainThread]: Flushing usage events
+
+
+============================== 15:46:56.984450 | bdc67e18-41e9-48c5-a3ed-d59693ca0a77 ==============================
+[0m15:46:56.984450 [info ] [MainThread]: Running with dbt=1.8.4
+[0m15:46:56.985107 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': 'logs', 'profiles_dir': '/home/josephkevinmachado/code/how-to-slash-dbt-cost-w-duckdb', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run --target dev-cloud-warehouse', 'introspect': 'True', 'log_format': 'default', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'False'}
+[0m15:46:56.985668 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/josephkevinmachado/code/how-to-slash-dbt-cost-w-duckdb/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m15:46:56.986608 [debug] [MainThread]: Resource report: {"command_name": "run", "command_wall_clock_time": 0.065233275, "process_user_time": 1.559416, "process_kernel_time": 0.07802, "process_mem_max_rss": "87824", "process_out_blocks": "16", "command_success": false, "process_in_blocks": "0"}
+[0m15:46:56.987165 [debug] [MainThread]: Command `dbt run` failed at 15:46:56.987055 after 0.07 seconds
+[0m15:46:56.987535 [debug] [MainThread]: Flushing usage events
