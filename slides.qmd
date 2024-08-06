@@ -52,6 +52,11 @@ format:
 
 ![](./profile.png)
 
+## dbt + duckdb local workflow
+
+![](./lcl.png)
+
+
 ## Serverless data pipeline workflows
 
 * Serverless dbt + duckdb workflow: 
@@ -105,6 +110,10 @@ flowchart LR
 
 * Data transfer costs & IP costs are negligible at this scale.
 
+##
+
+![cost](./cost.png)
+
 ## Save time and money by keeping the feedback loop short
 
 * With standard dist. Data proc systems, you will need to wait a while (set up cluster, start job, etc.) before you see the results.
@@ -119,13 +128,15 @@ flowchart LR
 
 * **Code changes**: Changing db-specific functions, e.g., MERGE and date functions.
 
-* **Error handling**: If you are processing in memory (without persisting intermediate datasets) and your data processing fails, you will have to re-run the entire pipeline.
+* **Input data**: You have to read the data from source systems or from warehouse where the input data exists.
 
 ##
 
+* **Error handling & Debugging**: If you are processing in memory (without persisting intermediate datasets) and your data processing fails, you will have to re-run the entire pipeline.
+
 * **Permissions** are set at the service level, not the USER/ROLE level, as in most data processing systems.
 
-* **Logging system metrics**: most cloud VMs have this setup, e.g., AWS Cloudwatch.
+* **Logging system metrics**: most cloud VMs have this setup, e.g., AWS Cloudwatch. In addition to metrics logging you will not be able to see query history.
 
 ## With a template to migrate, the rest of the migration will be more straightforward
 

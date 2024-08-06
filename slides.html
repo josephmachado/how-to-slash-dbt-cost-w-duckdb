@@ -376,6 +376,10 @@
 </ul>
 
 <img data-src="./profile.png" class="r-stretch"></section>
+<section id="dbt-duckdb-local-workflow" class="slide level2">
+<h2>dbt + duckdb local workflow</h2>
+
+<img data-src="./lcl.png" class="r-stretch"></section>
 <section id="serverless-data-pipeline-workflows" class="slide level2">
 <h2>Serverless data pipeline workflows</h2>
 <ul>
@@ -439,6 +443,10 @@
 <li><p>Data transfer costs &amp; IP costs are negligible at this scale.</p></li>
 </ul>
 </section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+
+<img data-src="./cost.png" class="r-stretch quarto-figure-center"><p class="caption">cost</p></section>
 <section id="save-time-and-money-by-keeping-the-feedback-loop-short" class="slide level2">
 <h2>Save time and money by keeping the feedback loop short</h2>
 <ul>
@@ -456,14 +464,15 @@
 <ul>
 <li><p>Setting up infra to run, EC2/AWS Lambda/ECS, k8s, etc instead of connecting to a db/engine.</p></li>
 <li><p><strong>Code changes</strong>: Changing db-specific functions, e.g., MERGE and date functions.</p></li>
-<li><p><strong>Error handling</strong>: If you are processing in memory (without persisting intermediate datasets) and your data processing fails, you will have to re-run the entire pipeline.</p></li>
+<li><p><strong>Input data</strong>: You have to read the data from source systems or from warehouse where the input data exists.</p></li>
 </ul>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <ul>
+<li><p><strong>Error handling &amp; Debugging</strong>: If you are processing in memory (without persisting intermediate datasets) and your data processing fails, you will have to re-run the entire pipeline.</p></li>
 <li><p><strong>Permissions</strong> are set at the service level, not the USER/ROLE level, as in most data processing systems.</p></li>
-<li><p><strong>Logging system metrics</strong>: most cloud VMs have this setup, e.g., AWS Cloudwatch.</p></li>
+<li><p><strong>Logging system metrics</strong>: most cloud VMs have this setup, e.g., AWS Cloudwatch. In addition to metrics logging you will not be able to see query history.</p></li>
 </ul>
 </section>
 <section id="with-a-template-to-migrate-the-rest-of-the-migration-will-be-more-straightforward" class="slide level2">
@@ -473,7 +482,7 @@
 <li><p>Migrate at off-peak times. For example, if you are in e-commerce, don’t migrate during Thanksgiving, or if you are in finance, don’t migrate at the end of fiscal year reporting.</p></li>
 </ul>
 </section>
-<section id="section-3" class="slide level2 scrollable">
+<section id="section-4" class="slide level2 scrollable">
 <h2></h2>
 <ul>
 <li>Data pipeline migrations are tricky!
@@ -490,7 +499,7 @@
 <li><p><strong><code>Aggregate past n periods of data</code></strong> instead of reaggregating the entire data set. For example, if your pipeline processes sales data that comes in every day, instead of reprocessing the past n years’ worth of data, consider reprocessing the past 3/6 months of data (depending on later arriving data for your business use case).</p></li>
 </ul>
 </section>
-<section id="section-4" class="slide level2">
+<section id="section-5" class="slide level2">
 <h2></h2>
 <ul>
 <li><strong><code>Store aggregated data</code></strong> in a separate location. For example, if you count rows in a dataset every run, store the counts in a separate table so you don’t have to recompute them for historical data each time.</li>
@@ -505,7 +514,7 @@
 <li><p>But you can alleviate a lot of issues if you are using a catalog (e.g.&nbsp;iceberg catalog)that most OLAP dbs support.</p></li>
 </ul>
 </section>
-<section id="section-5" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 
 <img data-src="./multienv.png" class="r-stretch"></section></section>
