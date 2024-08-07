@@ -40,7 +40,7 @@ format:
 
 ::::
 
-# DuckDB + Ephemeral VMs = dirt cheap data processing.
+# [Why] DuckDB + Ephemeral VMs = dirt cheap data processing.
 
 ## Standard dbt + warehouse workflow
 
@@ -112,7 +112,7 @@ flowchart LR
 
 ##
 
-![cost](./cost.png)
+![https://calculator.aws](./cost.png)
 
 ## Save time and money by keeping the feedback loop short
 
@@ -120,13 +120,19 @@ flowchart LR
 
 * With dbt + duckdb, you can run locally without a complex setup and see results instantly (check out the buenavista package for viewing results when a dbt pipeline is running in duckdb).
 
-# Migrate one (or a few related pipelines) at a time.
+## Recap
+
+* **Cost saving** by avoiding pay-by-data-scanned cost model. 
+
+* **Time saving** by reducing feedback loop and avoiding paying for development.
+
+# [How] Migrate one (or a few related pipelines) at a time.
 
 ## Your first migration will involve some work
 
 * Setting up infra to run, EC2/AWS Lambda/ECS, k8s, etc instead of connecting to a db/engine.
 
-* **Code changes**: Changing db-specific functions, e.g., MERGE and date functions.
+* **Code changes**: Changing db-specific functions, e.g., merge into, date functions, etc.
 
 * **Input data**: You have to read the data from source systems or from warehouse where the input data exists.
 
@@ -174,7 +180,7 @@ flowchart LR
 
 ![](./multienv.png)
 
-# Watch out for integration points!
+# [Caution] Watch out for integration points!
 
 ## Data permissions are defined at the service level.
 

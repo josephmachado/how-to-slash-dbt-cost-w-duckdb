@@ -341,9 +341,9 @@
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
 <ul>
-<li><a href="#/duckdb-ephemeral-vms-dirt-cheap-data-processing." id="/toc-duckdb-ephemeral-vms-dirt-cheap-data-processing.">DuckDB + Ephemeral VMs = dirt cheap data processing.</a></li>
-<li><a href="#/migrate-one-or-a-few-related-pipelines-at-a-time." id="/toc-migrate-one-or-a-few-related-pipelines-at-a-time.">Migrate one (or a few related pipelines) at a time.</a></li>
-<li><a href="#/watch-out-for-integration-points" id="/toc-watch-out-for-integration-points">Watch out for integration points!</a></li>
+<li><a href="#/why-duckdb-ephemeral-vms-dirt-cheap-data-processing." id="/toc-why-duckdb-ephemeral-vms-dirt-cheap-data-processing.">[Why] DuckDB + Ephemeral VMs = dirt cheap data processing.</a></li>
+<li><a href="#/how-migrate-one-or-a-few-related-pipelines-at-a-time." id="/toc-how-migrate-one-or-a-few-related-pipelines-at-a-time.">[How] Migrate one (or a few related pipelines) at a time.</a></li>
+<li><a href="#/caution-watch-out-for-integration-points" id="/toc-caution-watch-out-for-integration-points">[Caution] Watch out for integration points!</a></li>
 </ul>
 </nav>
 </section>
@@ -361,8 +361,8 @@
 </div></div>
 </section>
 <section>
-<section id="duckdb-ephemeral-vms-dirt-cheap-data-processing." class="title-slide slide level1 center">
-<h1>DuckDB + Ephemeral VMs = dirt cheap data processing.</h1>
+<section id="why-duckdb-ephemeral-vms-dirt-cheap-data-processing." class="title-slide slide level1 center">
+<h1>[Why] DuckDB + Ephemeral VMs = dirt cheap data processing.</h1>
 
 </section>
 <section id="standard-dbt-warehouse-workflow" class="slide level2">
@@ -446,24 +446,31 @@
 <section id="section-2" class="slide level2">
 <h2></h2>
 
-<img data-src="./cost.png" class="r-stretch quarto-figure-center"><p class="caption">cost</p></section>
+<img data-src="./cost.png" class="r-stretch quarto-figure-center"><p class="caption">https://calculator.aws</p></section>
 <section id="save-time-and-money-by-keeping-the-feedback-loop-short" class="slide level2">
 <h2>Save time and money by keeping the feedback loop short</h2>
 <ul>
 <li><p>With standard dist. Data proc systems, you will need to wait a while (set up cluster, start job, etc.) before you see the results.</p></li>
 <li><p>With dbt + duckdb, you can run locally without a complex setup and see results instantly (check out the buenavista package for viewing results when a dbt pipeline is running in duckdb).</p></li>
 </ul>
+</section>
+<section id="recap" class="slide level2">
+<h2>Recap</h2>
+<ul>
+<li><p><strong>Cost saving</strong> by avoiding pay-by-data-scanned cost model.</p></li>
+<li><p><strong>Time saving</strong> by reducing feedback loop and avoiding paying for development.</p></li>
+</ul>
 </section></section>
 <section>
-<section id="migrate-one-or-a-few-related-pipelines-at-a-time." class="title-slide slide level1 center">
-<h1>Migrate one (or a few related pipelines) at a time.</h1>
+<section id="how-migrate-one-or-a-few-related-pipelines-at-a-time." class="title-slide slide level1 center">
+<h1>[How] Migrate one (or a few related pipelines) at a time.</h1>
 
 </section>
 <section id="your-first-migration-will-involve-some-work" class="slide level2">
 <h2>Your first migration will involve some work</h2>
 <ul>
 <li><p>Setting up infra to run, EC2/AWS Lambda/ECS, k8s, etc instead of connecting to a db/engine.</p></li>
-<li><p><strong>Code changes</strong>: Changing db-specific functions, e.g., MERGE and date functions.</p></li>
+<li><p><strong>Code changes</strong>: Changing db-specific functions, e.g., merge into, date functions, etc.</p></li>
 <li><p><strong>Input data</strong>: You have to read the data from source systems or from warehouse where the input data exists.</p></li>
 </ul>
 </section>
@@ -519,8 +526,8 @@
 
 <img data-src="./multienv.png" class="r-stretch"></section></section>
 <section>
-<section id="watch-out-for-integration-points" class="title-slide slide level1 center">
-<h1>Watch out for integration points!</h1>
+<section id="caution-watch-out-for-integration-points" class="title-slide slide level1 center">
+<h1>[Caution] Watch out for integration points!</h1>
 
 </section>
 <section id="data-permissions-are-defined-at-the-service-level." class="slide level2">
